@@ -1,0 +1,35 @@
+<div class="main-card-container">
+<ng-container *ngIf="product; else elseTemplate">
+    <mat-card class="main-card">
+        <mat-card-header>
+            <mat-card-title>Name: {{product.name}}</mat-card-title>
+            <mat-card-subtitle>Created On: {{product.createdOn.toDate() | date: 'mediumDate'}}</mat-card-subtitle>
+        </mat-card-header>
+       
+        <mat-card-content>
+            <h3>Company: {{product.makeView}}</h3>
+            <h3>Quantity: {{product.count}}</h3>
+            <h4>Type: {{product.typeView}}</h4>
+            <h5>Sub-Type: {{product.subTypeView}}</h5>
+        </mat-card-content>
+        <mat-card-actions class="action-buttons" align="center">
+            <button mat-mini-fab color="primary" aria-label="Edit Product" (click)="editProduct()">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-mini-fab color="accent" aria-label="Increase Quantity" (click)="changeProductQuantity(1)">
+                <mat-icon>add</mat-icon>
+            </button>
+            <button mat-mini-fab color="warn" aria-label="Decrease Quantity" (click)="changeProductQuantity(0)">
+                <mat-icon>remove</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</ng-container>
+<ng-template #elseTemplate>
+    <div class="u__center" *ngIf="!!!product" #showSpinner>
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>
+<button class="history-button" *ngIf="showHistoryButton" mat-raised-button color= "primary" (click)="showHistory()">Show Item History</button>
+</div>
+<router-outlet></router-outlet>
