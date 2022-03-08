@@ -49,6 +49,7 @@ export class ImagePickerComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    console.log('imageURL in picker',this.image);
     this.showPreview = !!this.image;
   }
 

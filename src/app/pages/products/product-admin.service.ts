@@ -137,16 +137,19 @@ export class ProductAdminService {
 
    addProduct(
     name: string,
+    desc:string,
     type: string,
     subType:string,
     make: string,
-    count:number = 0
+    price:number,
+    photoURL:string,
+    count:number = 0,
   ) {
     console.log('In add product', this.user);
     this.coreService.setIsLoading(true);
     if (this.user) {
      // this.uiService.presentLoading('Submitting Complaint...');
-      const newProduct = {name, type,subType,make,count, createdOn: new Date(), createdBy: this.user.uid}
+      const newProduct = {name,desc, type,subType,make,price,photoURL,count, createdOn: new Date(), createdBy: this.user.uid}
       //delete newComplaint.id;
       console.log('In add product', JSON.stringify(newProduct));
       return from(this.productCollection.add({ ...newProduct }));

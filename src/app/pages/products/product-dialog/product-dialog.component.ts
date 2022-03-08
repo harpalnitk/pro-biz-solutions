@@ -65,19 +65,26 @@ export class ProductDialogComponent implements OnInit, AfterViewInit {
   initForm() {
     this.form = new FormGroup({
       name: new FormControl(null, { validators: [Validators.required] }),
+      desc: new FormControl(null),
       type: new FormControl(null, { validators: [Validators.required] }),
       subType: new FormControl(null, { validators: [Validators.required] }),
       make: new FormControl(null, { validators: [Validators.required] }),
+      price: new FormControl(null, { validators: [Validators.required] }),
+      photoURL: new FormControl(null),
     });
   }
 
   patchForm() {
+    console.log("patchForm in product dialog component",this.product.photoURL );
     this.loadSubType(this.product.type);
     this.form.patchValue({
       name: this.product.name,
+      desc: this.product.desc,
       type: this.product.type,
       subType: this.product.subType,
       make: this.product.make,
+      price: this.product.price,
+      photoURL: this.product.photoURL || null,
     });
    
   }
@@ -122,7 +129,7 @@ export class ProductDialogComponent implements OnInit, AfterViewInit {
     } else {
       //ADD PRODUCT
       this.productAdminService
-        .addProduct(data.name, data.type, data.subType, data.make)
+        .addProduct(data.name, data.desc, data.type, data.subType, data.make, data.price, data.photoURL)
         .pipe(
           finalize(() => {
             console.log(" in add product before closing dialog");
@@ -143,6 +150,10 @@ export class ProductDialogComponent implements OnInit, AfterViewInit {
           }
         );
     }
+  }
+  onImagePicked(imageURL: string) {
+    console.log('imageURL in product-dialog component'), imageURL;
+    this.form.patchValue({ photoURL: imageURL });
   }
 
   close() {

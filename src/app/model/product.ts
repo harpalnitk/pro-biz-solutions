@@ -6,6 +6,8 @@ export interface Product {
     make:string;
     desc?:string;
     discountId?: string;
+    price:number;
+    photoURL?:string;
 
     count:number;
     createdOn: Date;
