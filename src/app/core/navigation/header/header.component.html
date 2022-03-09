@@ -3,7 +3,7 @@
     <mat-icon aria-hidden="false" aria-label="Side Menu">menu</mat-icon>
   </button>
 
-  <div class="header__logo"><a routerLink="/">MEGA POWER</a></div>
+  <div class="header__logo"><a routerLink="/">PRO BIZ SOLUTIONS</a></div>
   <ng-container>
     <!--     IF DATA IS NOT USED AND IF asAuth IS FALSE THEN THE WHOLE CONTENT IS NOT DISPLAYED-->
     <ul class="header__navigation-items header__navigation-items--start">
@@ -23,6 +23,16 @@
           ><a
             routerLink
             routerLink="/products"
+            routerLinkActive="header__navigation-items-active"
+            >Admin-Products</a
+          ></span
+        >
+      </li>
+      <li>
+        <span
+          ><a
+            routerLink
+            routerLink="/public-products"
             routerLinkActive="header__navigation-items-active"
             >Products</a
           ></span

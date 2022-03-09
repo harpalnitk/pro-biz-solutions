@@ -2,7 +2,7 @@ import { ProductAdminService } from './product-admin.service';
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {Observable, BehaviorSubject, of} from "rxjs";
 
-import {catchError, finalize} from "rxjs/operators";
+import {catchError, finalize, tap} from "rxjs/operators";
 import { Product } from '../../model/product';
 
 
@@ -31,7 +31,8 @@ export class ProductDataSource implements DataSource<Product> {
         //     .subscribe(lessons => this.lessonsSubject.next(lessons));
         this.productAdminService.allProductForView$.pipe(
                 catchError(() => of([])),
-                finalize(() => this.loadingSubject.next(false)) 
+                tap(() => this.loadingSubject.next(false)) 
+                //finalize not used here because this subscription will not end
         ).subscribe(products => this.productsSubject.next(products));
 
     }

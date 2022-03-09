@@ -25,8 +25,16 @@
     *ngIf="isAuth$ | async"
   >
     <mat-icon>inventory</mat-icon>
-    <span class="sidebar__nav-caption">Products</span>
+    <span class="sidebar__nav-caption">Admin-Products</span>
   </a>
+  <a
+  mat-list-item
+  routerLink="/public-products"
+  (click)="onClose()"
+>
+  <mat-icon>inventory</mat-icon>
+  <span class="sidebar__nav-caption">Products</span>
+</a>
     <a
       mat-list-item
       [routerLink]="['/profile']"

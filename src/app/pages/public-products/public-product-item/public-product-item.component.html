@@ -1,0 +1,64 @@
+<mat-card class="product-card">
+  <mat-card-header>
+    <!-- <div mat-card-avatar class="product-card-header-image"></div> -->
+    <mat-card-title>{{ product.name }}</mat-card-title>
+    <mat-card-subtitle>{{ product.makeView }}</mat-card-subtitle>
+  </mat-card-header>
+  <!-- <img mat-card-image src="/assets/images/face.jpg" alt="{{ product.title }}" /> -->
+  <img
+    [class.grid-img]="isGrid"
+    mat-card-image
+    src="{{ product.photoURL }}"
+    alt="{{ product.name }}"
+  />
+  <mat-card-content>
+    <div class="group">
+      <div class="item">
+        <h4>Type</h4>
+        <p>{{ product.typeView }}</p>
+      </div>
+      <div class="item">
+        <h4>Sub-Type:</h4>
+        <p>{{ product.subTypeView }}</p>
+      </div>
+    </div>
+    <div class="group">
+      <div class="item">
+        <h4>Product Details</h4>
+        <p>{{ product.desc }}</p>
+      </div>
+    </div>
+    <div class="group end">
+      <h2>Price: &#x20b9; <small>{{product.price}}</small></h2>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button *ngIf="buttons[0]" mat-stroked-button (click)="onEdit()">
+      Edit
+    </button>
+    <button
+      *ngIf="buttons[1]"
+      mat-stroked-button
+      color="primary"
+      (click)="onDetail()"
+    >
+      Detail
+    </button>
+    <button
+      *ngIf="buttons[2]"
+      mat-stroked-button
+      color="warn"
+      (click)="onDelete()"
+    >
+      Delete
+    </button>
+    <button
+      *ngIf="buttons[3]"
+      mat-stroked-button
+      color="primary"
+      (click)="addToCart()"
+    >
+      Add to Cart
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,24 @@
+<mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+<div *ngIf="!(isLoading$ | async)">
+  <ng-container *ngIf="(products$ | async)?.length > 0; else elseTemplate">
+    <div class="shop-grid">
+      <app-product-item
+        *ngFor="let product of products$ | async"
+        [product]="product"
+        [buttons]="[false, true, false, true]"
+      ></app-product-item>
+    </div>
+    <mat-paginator
+      (page)="handlePageEvent($event)"
+      [length]="productCount$ | async"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      [pageIndex]="pageIndex"
+      [showFirstLastButtons]="showFirstLastButtons"
+    >
+    </mat-paginator>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <div class="empty-div">No Products</div>
+  </ng-template>
+</div>

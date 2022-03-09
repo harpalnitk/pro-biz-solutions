@@ -11,7 +11,8 @@ const routes: Routes = [
  
     { path: 'auth', loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule) },
     { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule) },
-  
+    { path: 'public-products', loadChildren: () => import('./pages/public-products/public-products.module').then(m => m.PublicProductsModule) },
+    { path: 'shop', loadChildren: () => import('./pages/shop/shop.module').then((m) => m.ShopModule)},
   
  
   

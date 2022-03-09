@@ -1,0 +1,38 @@
+.top-row{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 3rem 1rem;
+
+  &--select{
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    mat-form-field:not(:last-child){
+      // max-width: 50%;
+      margin-right: 1rem;
+    }
+  }
+  &--filter{
+    width: 50%;
+  }
+}
+.product-grid {
+    //GRID CSS
+    display: grid;
+    gap: 2rem;
+    padding: 1rem;
+  
+    //grid-template-columns: repeat(12, 1fr);
+    /*3 better sizing but overflows*/
+    //grid-template-columns: repeat(12, minmax(240px, 1fr));
+    /*Create implicit grid with auto-fit. it tells grid to fit contents*/
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  mat-spinner {
+    margin: 5rem auto auto;
+  }

@@ -7,6 +7,9 @@ It will generate about component also
 For generating Components
 ng g c pages/products/productlist --skip-tests --module products
 
+For generatimg Service
+
+
 
 
 # Firestore

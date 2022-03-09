@@ -40,7 +40,7 @@ export class ProductAdminService {
    selectedColumnChanged(column: string): void {
     this.selectedColumnSubject.next(column);
   }
-   //Acsendinf Descending
+   //Acsending Descending
    selectedOrderSubject = new BehaviorSubject<'asc'|'desc'>('desc');
    selectedOrder$ = this.selectedOrderSubject.asObservable();
    selectedOrderChanged(order: 'asc'|'desc'): void {
