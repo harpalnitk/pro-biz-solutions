@@ -13,6 +13,8 @@ const routes: Routes = [
     { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule) },
     { path: 'public-products', loadChildren: () => import('./pages/public-products/public-products.module').then(m => m.PublicProductsModule) },
     { path: 'shop', loadChildren: () => import('./pages/shop/shop.module').then((m) => m.ShopModule)},
+    { path: 'contact', loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactModule) },
+    { path: 'service', loadChildren: () => import('./pages/service/service.module').then(m => m.ServiceModule) },
   
  
   

@@ -20,12 +20,20 @@
     </a>
     <a
     mat-list-item
+    routerLink="/about"
+    (click)="onClose()"
+  >
+    <mat-icon>info</mat-icon>
+    <span class="sidebar__nav-caption">About Us</span>
+  </a>
+    <a
+    mat-list-item
     routerLink="/products"
     (click)="onClose()"
     *ngIf="isAuth$ | async"
   >
-    <mat-icon>inventory</mat-icon>
-    <span class="sidebar__nav-caption">Admin-Products</span>
+    <mat-icon>admin_panel_settings</mat-icon>
+    <span class="sidebar__nav-caption">Admin</span>
   </a>
   <a
   mat-list-item
@@ -34,6 +42,22 @@
 >
   <mat-icon>inventory</mat-icon>
   <span class="sidebar__nav-caption">Products</span>
+</a>
+<a
+mat-list-item
+routerLink="/service"
+(click)="onClose()"
+>
+<mat-icon>support_agent</mat-icon>
+<span class="sidebar__nav-caption">Services</span>
+</a>
+<a
+mat-list-item
+routerLink="/contact"
+(click)="onClose()"
+>
+<mat-icon>contact_mail</mat-icon>
+<span class="sidebar__nav-caption">Contact</span>
 </a>
     <a
       mat-list-item
