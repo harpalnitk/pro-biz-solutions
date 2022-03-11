@@ -1,3 +1,4 @@
+import { CoreService } from './../../core.service';
 import { User } from './../../../model/user';
 import { AuthService } from './../../../pages/auth/auth.service';
 
@@ -26,10 +27,13 @@ export class HeaderComponent implements OnInit {
 
   isAuth$: Observable<boolean>;
   user$: Observable<User | null>;
+  
+  
 
   constructor(
     private authService: AuthService,
     private store: Store<fromRoot.State>,
+    private coreService: CoreService,
   ) {
     // console.log('Before fetching CSRF Token');
     // this.coreService.getCSRFToken();
@@ -43,6 +47,7 @@ export class HeaderComponent implements OnInit {
       shareReplay()
     );
     this.user$ = this.authService.user$.pipe(shareReplay());
+  
   }
 
   ngOnInit() {}

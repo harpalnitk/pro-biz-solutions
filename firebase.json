@@ -18,7 +18,7 @@
     ]
   },
   "storage": {
-    "rules": "n"
+    "rules": "firestorage.rules"
   },
   "emulators": {
     "functions": {

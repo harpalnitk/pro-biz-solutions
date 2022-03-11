@@ -1,0 +1,48 @@
+<h1>ProBiz Solution Products</h1>
+<mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+<div *ngIf="!(isLoading$ | async)">
+  <div class="top-row">
+   
+    <mat-form-field class="top-row--filter">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Maruti" #input>
+    </mat-form-field>
+    <div class="top-row--select">
+      <mat-form-field appearance="fill">
+        <mat-label>Sort Products</mat-label>
+        <mat-select (selectionChange)="sortProducts($event.value)" placeholder="Sort By" #sortBy>
+          <mat-option value="createdOn">Newest</mat-option>
+          <mat-option value="price">Price</mat-option>
+      </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Order</mat-label>
+        <mat-select (selectionChange)="sortProducts(sortBy.value, $event.value)" placeholder="Order">
+          <mat-option value="asc">Ascending</mat-option>
+          <mat-option value="desc">Descending</mat-option>
+      </mat-select>
+      </mat-form-field>
+    </div>
+</div>
+  <ng-container *ngIf="(products$ | async)?.length > 0; else elseTemplate">
+    <div class="product-grid">
+      <public-product-item
+        *ngFor="let product of products$ | async"
+        [product]="product"
+        [buttons]="[false, true, false, true]"
+      ></public-product-item>
+    </div>
+    <!-- <mat-paginator
+      (page)="handlePageEvent($event)"
+      [length]="productCount$ | async"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      [pageIndex]="pageIndex"
+      [showFirstLastButtons]="showFirstLastButtons"
+    >
+    </mat-paginator> -->
+  </ng-container>
+  <ng-template #elseTemplate>
+    <div class="empty-div">No Products</div>
+  </ng-template>
+</div>

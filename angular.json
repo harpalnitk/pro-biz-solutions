@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "firebase-course": {
+    "pro-biz-solutions": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -54,6 +54,14 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
+            },
+            "hmr": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hmr.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": ""
@@ -61,18 +69,22 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "firebase-course:build"
+            "browserTarget": "pro-biz-solutions:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "firebase-course:build:production"
+              "browserTarget": "pro-biz-solutions:build:production"
+            },
+            "hmr": {
+              "hmr": true,
+              "browserTarget": "pro-biz-solutions:build:hmr"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "firebase-course:build"
+            "browserTarget": "pro-biz-solutions:build"
           }
         },
         "test": {
@@ -107,7 +119,7 @@
         }
       }
     },
-    "firebase-course-e2e": {
+    "pro-biz-solutions-e2e": {
       "root": "",
       "sourceRoot": "",
       "projectType": "application",
@@ -116,7 +128,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "firebase-course:serve"
+            "devServerTarget": "pro-biz-solutions:serve"
           }
         },
         "lint": {
@@ -133,7 +145,7 @@
       }
     }
   },
-  "defaultProject": "firebase-course",
+  "defaultProject": "pro-biz-solutions",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"

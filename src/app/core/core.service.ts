@@ -80,4 +80,7 @@ export class CoreService {
       return  '50vw';
     }
   }
+
 }
+
+

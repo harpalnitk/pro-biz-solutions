@@ -27,6 +27,7 @@ export class ImagePickerComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   uploadPercent$: Observable<boolean>;
   downloadUrl$: Observable<string>;
+  imgLoaded = false;
 
   selectedImage: string;
   //THE IMAGE DOWNLOADABLE URL TO BE EMITTED
@@ -84,7 +85,8 @@ export class ImagePickerComponent implements OnInit, OnDestroy {
       //therefore when reaching 100 it will evaluate to true and progress spinner will show
       map((val)=>{
         console.log(val);
-        if(val < 100){
+        if(val < 100 ){
+          console.log('this.image',this.image);
           return true;
         }else {
           return false;
@@ -113,6 +115,7 @@ export class ImagePickerComponent implements OnInit, OnDestroy {
       (url) => {
         console.log("Download URL", url);
         this.image = url;
+        this.showPreview = !!this.image;
         this.outputImageURL.emit(url);
       },
       (err) => {
@@ -127,5 +130,11 @@ export class ImagePickerComponent implements OnInit, OnDestroy {
       // console.log('Subscription in image picker being destroyed', sub);
       sub.unsubscribe();
     });
+  }
+
+  imageLoaded(){
+    console.log('onLoad called', this.imgLoaded);
+    this.imgLoaded = true;
+    console.log('onLoad called', this.imgLoaded);
   }
 }

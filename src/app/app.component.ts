@@ -10,7 +10,7 @@ import { Observable } from "rxjs";
 import * as fromRoot from './app.reducer';
 import { Store } from '@ngrx/store';
 import { User } from './model/user';
-import { ProductConfigService } from './pages/products/product-config/product-config.service';
+import { ProductConfigService } from './pages/admin/product-config/product-config.service';
 
 
 @Component({

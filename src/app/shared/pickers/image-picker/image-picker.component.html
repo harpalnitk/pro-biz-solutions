@@ -1,8 +1,10 @@
+
 <div class="container">
-  <img
+<img
   class="image" 
   [src]='image' 
-  *ngIf="showPreview && !(uploadPercent$ | async)">
+  *ngIf="showPreview && !(uploadPercent$ | async)" 
+  (load)="imageLoaded()">
 <div class="middle">
   <button mat-raised-button class="file-picker-button"
   color="primary" 
@@ -14,7 +16,7 @@
   </button>
 
 </div>
-<mat-progress-bar *ngIf="(uploadPercent$ | async)"  mode="indeterminate"></mat-progress-bar>
+<mat-progress-bar *ngIf="!(!imgLoaded || !(uploadPercent$ | async))"  mode="indeterminate"></mat-progress-bar>
 </div>
 <input 
 type="file" 

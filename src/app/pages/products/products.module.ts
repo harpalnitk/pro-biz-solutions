@@ -1,30 +1,23 @@
-import { ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '../../shared/material.module';
-import { ProductTableComponent } from './product-table/product-table.component';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { ProductRoutingModule } from './product-routing.module';
-import { ProductComponent } from './product.component';
-import { ProductDialogComponent } from './product-dialog/product-dialog.component';
-import { ProductQtyDialogComponent } from './product-qty-dialog/product-qty-dialog.component';
-import { ProductItemComponent } from './product-item/product-item.component';
 import { SharedModule } from '../../shared/shared.module';
-import { ProductItemHistoryComponent } from './product-item/product-item-history/product-item-history.component';
+import { NgModule } from '@angular/core';
+
+import { ProductsRoutingModule } from './products-routing.module';
+import { PublicProductsComponent } from './products.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { PublicProductItemComponent } from './public-product-item/public-product-item.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 
 @NgModule({
   declarations: [
-    ProductComponent,
-    ProductTableComponent,
-    ProductDialogComponent,
-    ProductItemComponent,
-    ProductQtyDialogComponent,
-    ProductItemHistoryComponent
+    PublicProductsComponent,
+    ProductListComponent,
+    PublicProductItemComponent,
+    ProductDetailComponent
   ],
   imports: [
     SharedModule,
-    ProductRoutingModule
+    ProductsRoutingModule
   ]
 })
 export class ProductsModule { }

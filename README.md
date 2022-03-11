@@ -341,6 +341,9 @@ in package.json file add production build scrit
 
 This will create some files in the dist folder
 
+>npm run build
+>firebase deploy
+
 ## To deploy again run firebase init to load deploy package in our project
 
 instead of public as output directory use dist
@@ -474,3 +477,115 @@ needed for adding dynamic inputs to dynamically created form controls in lazy lo
 ## chart.js
 
 required only for reactive animations-code module
+
+
+## Adding hmr Hot Module Replacement to your project
+
+1. Create a new file ‘~src/environments/environment.hmr.ts’ and add
+export const environment = {
+    production: false,
+    hmr: true
+};
+
+2. Update the ‘~src/environments/environment.ts’ file and add hmr: false
+
+3. Update the ‘~src/environments/environment.prod.ts’ file  and add hmr: false
+
+4. Open the angular.json file and make changes in the "configurations" properties for "build" and "serve" by adding "hmr"
+
+"build": {
+    "configurations": {
+      ...
+      "hmr": {
+        "fileReplacements": [
+          {
+            "replace": "src/environments/environment.ts",
+            "with": "src/environments/environment.hmr.ts"
+          }
+        ]
+      }
+    }
+  },
+  ...
+  "serve": {
+    "configurations": {
+      ...
+      "hmr": {
+        "hmr": true,
+        "browserTarget": "angular-hmr-app:build:hmr"
+      }
+    }
+  }
+
+  Note: Change “angular-hmr-app” with your app name.
+
+  5. Open the ‘~src/tsconfig.app.json’ then add types
+
+  {
+  ...
+  "compilerOptions": {
+    ...
+    "types": ["node"]
+  },
+}
+
+6. Install @angularclass/hmr
+
+ npm install --save-dev @angularclass/hmr
+
+ 7. create a file ‘~src/hmr.ts’ then update with below code
+ // src/hmr.ts
+import { NgModuleRef, ApplicationRef } from '@angular/core';
+import { createNewHosts } from '@angularclass/hmr';
+
+export const hmrBootstrap = (module: any, bootstrap: () => Promise<NgModuleRef<any>>) => {
+  let ngModule: NgModuleRef<any>;
+  module.hot.accept();
+  bootstrap().then(mod => ngModule = mod);
+  module.hot.dispose(() => {
+    const appRef: ApplicationRef = ngModule.injector.get(ApplicationRef);
+    const elements = appRef.components.map(c => c.location.nativeElement);
+    const makeVisible = createNewHosts(elements);
+    ngModule.destroy();
+    makeVisible();
+  });
+};
+
+
+8. We need to change the bootstrap process by updating the ‘~src/main.ts’ file by including the hmr.ts file we just created in the above step
+
+
+// main.ts
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
+
+import { hmrBootstrap } from './hmr';
+
+if (environment.production) {
+  enableProdMode();
+}
+
+const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule);
+
+if (environment.hmr) {
+  if (module[ 'hot' ]) {
+    hmrBootstrap(module, bootstrap);
+  } else {
+    console.error('HMR is not enabled for webpack-dev-server!');
+    console.log('Are you using the --hmr flag for ng serve?');
+  }
+} else {
+  bootstrap().catch(err => console.log(err));
+}
+
+9. We can also update the package.json file’s “scripts” property with following
+
+"scripts": {
+  ...
+  "hmr": "ng serve --open --configuration hmr"
+}
+
+10. npm run hmr

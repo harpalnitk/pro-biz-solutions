@@ -1,0 +1,48 @@
+.main-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+  .mat-card-actions {
+    display: flex;
+    flex-direction: row wrap;
+    justify-content: center;
+  }
+  
+
+
+  .group h4{
+    color: #505050;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.9em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    line-height: 1em;
+}
+.group p{
+  color: #808080;
+  opacity: 0.85;
+  font-size: 0.8em;
+}
+.group{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.group h2{
+  color: #909090;
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.group h2 small{
+  font-size: 0.75em;
+}
+.group.end{
+  justify-content: flex-end;
+}
+  

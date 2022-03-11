@@ -36,7 +36,7 @@ export class AuthService {
   ) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap((user) => {
-        console.log("In user$ observable", user);
+       // console.log("In user$ observable", user);
         if (user) {
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
@@ -52,7 +52,7 @@ export class AuthService {
 
   initAuthListener() {
     this.afAuth.authState.subscribe((user) => {
-      console.log("In initAuthListener observable", user);
+     // console.log("In initAuthListener observable", user);
       this.authState = user;
       if (user) {
         // Update User Data has to be done only once after signup

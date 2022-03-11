@@ -25,7 +25,7 @@
       font-size: .8rem;
     }
     &--start {
-      margin-right: auto;
+      margin-left: auto;
       display: flex;
       flex-direction: row;
       li {
@@ -38,5 +38,17 @@
     }
   }
 }
+
+
+@media screen and (max-width: 600px ) {
+.header__navigation-items--start{
+  display: none;
+}
+.header__navigation-items{
+  margin-left: auto;
+}
+}
+
+
 
 

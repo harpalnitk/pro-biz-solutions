@@ -1,0 +1,58 @@
+<div class="main-card-container">
+  <mat-card class="main-card">
+    <mat-card-header>
+      <!-- <div mat-card-avatar class="product-card-header-image"></div> -->
+      <mat-card-title>{{ product.name }}</mat-card-title>
+      <mat-card-subtitle>{{ product.makeView }}</mat-card-subtitle>
+    </mat-card-header>
+  <div class="imgBx">
+    <img
+      mat-card-image
+      src="{{ product.photoURL }}"
+      alt="{{ product.name }}"
+    />
+  </div>
+
+    <mat-card-content>
+      <div class="group">
+        <div class="item">
+          <h4>Type</h4>
+          <p>{{ product.typeView }}</p>
+        </div>
+        <div class="item">
+          <h4>Sub-Type:</h4>
+          <p>{{ product.subTypeView }}</p>
+        </div>
+      </div>
+      <div class="group">
+        <div class="item">
+          <h4>Product Details</h4>
+          <p>{{ product.desc }}</p>
+        </div>
+      </div>
+      <div class="group end">
+        <h2>Price: &#x20b9; <small>{{product.price}}</small></h2>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+      
+        mat-stroked-button
+        color="primary"
+        (click)="addToCart()"
+      >
+        Add to Cart
+      </button>
+      <button
+      
+      mat-stroked-button
+      color="primary"
+      (click)="addToWishlist()"
+    >
+      Add to Wishlist
+    </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+  
