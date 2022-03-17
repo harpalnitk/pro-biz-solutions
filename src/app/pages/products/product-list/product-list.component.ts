@@ -1,5 +1,5 @@
 import { Product } from '../../../model/product';
-import { ProductAdminService } from '../../admin/admin-product.service';
+import { ProductAdminService } from '../../admin/product/product-admin.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { catchError, shareReplay } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';

@@ -1,0 +1,58 @@
+<h2 mat-dialog-title class="dialog-title">{{editMode? 'Edit Discount': 'New Discount'}}</h2>
+
+<ng-container *ngIf="isLoading$ | async; else elseTemplate">
+  <div class="u__center">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-container>
+<ng-template #elseTemplate>
+  <div class="dialog-container">
+    <mat-dialog-content [formGroup]="form">
+      <mat-form-field>
+        <input matInput 
+        placeholder="Name"
+         formControlName="name"
+         required
+         minlength="5"
+         maxlength="20" />
+         <mat-error
+         >Has to be between 5 and 20 characters.
+       </mat-error>
+      </mat-form-field>
+      <mat-form-field hintLabel="Must be less than 400 characters">
+        <textarea
+          matInput
+          placeholder="Description"
+          formControlName="desc"
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="2"
+          cdkAutosizeMaxRows="5"
+          autocomplete="false"
+          maxlength="400"
+        ></textarea>
+        <mat-error
+        >Must be less than 400 characters.
+      </mat-error>
+      </mat-form-field>
+      <mat-form-field hintLabel="Must be a number" appearance="outline">
+        <input matInput 
+         placeholder="Value"
+         formControlName="value"
+         required 
+         type="number"/>
+         <mat-error>Must be a number</mat-error>
+      </mat-form-field>
+  
+    </mat-dialog-content>
+  
+    <mat-dialog-actions>
+      <button mat-raised-button color="warn" (click)="close()">Close</button>
+  
+      <button mat-raised-button color="primary" (click)="save()"
+      [disabled]="form.invalid">Save</button>
+    </mat-dialog-actions>
+  </div>
+</ng-template>
+
+
+

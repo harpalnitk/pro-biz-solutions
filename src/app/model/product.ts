@@ -18,5 +18,7 @@ export interface Product {
     typeView?: string;
     subTypeView?:string;
     makeView?:string;
+    discountValue?:number;
+    discountDesc?:string;
 
 }

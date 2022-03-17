@@ -1,4 +1,4 @@
-import { ProductAdminService } from './../../admin/admin-product.service';
+import { ProductAdminService } from '../../admin/product/product-admin.service';
 import { Product } from './../../../model/product';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';

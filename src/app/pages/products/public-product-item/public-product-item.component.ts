@@ -1,4 +1,4 @@
-import { ProductAdminService } from '../../admin/admin-product.service';
+import { ProductAdminService } from '../../admin/product/product-admin.service';
 import { ShopService } from './../../shop/shop.service';
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';

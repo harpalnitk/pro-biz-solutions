@@ -10,7 +10,7 @@ import { Observable } from "rxjs";
 import * as fromRoot from './app.reducer';
 import { Store } from '@ngrx/store';
 import { User } from './model/user';
-import { ProductConfigService } from './pages/admin/product-config/product-config.service';
+import { AdminConfigService } from './pages/admin/admin-config/admin-config.service';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private afAuth: AngularFireAuth,
-    private productConfigService: ProductConfigService,
+    private adminConfigService: AdminConfigService,
     private store: Store<fromRoot.State>,
     private authService: AuthService,
   
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.productConfigService.saveConfigData();
+   this.adminConfigService.saveConfigData();
    // this.postCategoryService.saveConfigData();
    //this.postCategoryService.allCategories$.subscribe(val=> console.log('Catgories:', val));
    //this.postService.allPosts$.subscribe(val=> console.log('Posts:', val));

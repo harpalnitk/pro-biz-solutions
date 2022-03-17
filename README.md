@@ -9,7 +9,7 @@ ng g c pages/products/productlist --skip-tests --module products
 
 For generatimg Service
 
-
+ng g s pages/admin/discount/discount --skip-tests --module discount
 
 
 # Firestore

@@ -25,13 +25,16 @@
     }
   
     .table-column {
-      padding:.5rem 1rem .5rem 0;
+      padding:.5rem 1rem .5rem 0 !important;
+      &:first-of-type{
+        padding-left:1.5rem !important;
+      }
       font-size: 1.3rem;
       &--xs {
-        width: 1.6rem;
+        min-width: 1.6rem;
       }
       &--s {
-        width: 2.5rem;
+        min-width: 2.5rem;
       }
       &--fixed {
           word-wrap: break-word !important;

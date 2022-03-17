@@ -1,0 +1,96 @@
+<h2 mat-dialog-title class="dialog-title">{{editMode? 'Edit Product': 'New Product'}}</h2>
+
+<ng-container *ngIf="isLoading$ | async; else elseTemplate">
+  <div class="u__center">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-container>
+<ng-template #elseTemplate>
+  <div class="dialog-container">
+    <mat-dialog-content [formGroup]="form">
+      <mat-form-field>
+        <input matInput 
+        placeholder="Name"
+         formControlName="name"
+         required
+         minlength="5"
+         maxlength="40" />
+         <mat-error
+         >Has to be between 5 and 40 characters.
+       </mat-error>
+      </mat-form-field>
+      <mat-form-field hintLabel="Must be less than 400 characters">
+        <textarea
+          matInput
+          placeholder="Description"
+          formControlName="desc"
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="2"
+          cdkAutosizeMaxRows="5"
+          autocomplete="false"
+          maxlength="400"
+        ></textarea>
+        <mat-error
+        >Must be less than 400 characters.
+      </mat-error>
+      </mat-form-field>
+      <mat-form-field hintLabel="Must be a number" appearance="outline">
+        <input matInput 
+         placeholder="Price"
+         formControlName="price"
+         required 
+         type="number"/>
+         <mat-error>Must be a number</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Select Discount</mat-label>
+        <mat-select formControlName="discountId">
+          <mat-option *ngFor="let discount of discounts$ | async" [value]="discount.id">
+            {{discount.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+          <mat-label>Select Type</mat-label>
+          <mat-select formControlName="type" (selectionChange)="loadSubType($event.value)">
+            <mat-option *ngFor="let type of types$ | async" [value]="type.value">
+              {{type.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+       
+        <mat-form-field appearance="fill">
+          <mat-label>Select Sub-Type</mat-label>
+          <mat-select formControlName="subType">
+            <mat-option *ngFor="let subType of subTypes$ | async" [value]="subType.value">
+              {{subType.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Company</mat-label>
+          <mat-select formControlName="make">
+            <mat-option *ngFor="let make of makes$ | async" [value]="make.value">
+              {{make.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <app-image-picker
+      [image]="form.get('photoURL').value || product?.photoURL"
+      [inputPath]="'product'"
+      (outputImageURL)="onImagePicked($event)"></app-image-picker>
+    </mat-dialog-content>
+  
+    <mat-dialog-actions>
+      <button mat-raised-button color="warn" (click)="close()">Close</button>
+  
+      <button mat-raised-button color="primary" (click)="save()"
+      [disabled]="form.invalid">Save</button>
+    </mat-dialog-actions>
+  </div>
+</ng-template>
+
+

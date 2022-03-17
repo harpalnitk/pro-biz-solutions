@@ -1,0 +1,27 @@
+<div class="main-card-container">
+<ng-container *ngIf="discount; else elseTemplate">
+    <mat-card class="main-card">
+        <mat-card-header>
+            <mat-card-title>Name: {{discount.name}}</mat-card-title>
+            <mat-card-subtitle>Created On: {{discount.createdOn.toDate() | date: 'mediumDate'}}</mat-card-subtitle>
+        </mat-card-header>
+       
+        <mat-card-content>
+            <h3>Value: {{discount.value}}</h3>
+            <h5>Description: {{discount.desc}}</h5>
+        </mat-card-content>
+        <mat-card-actions class="action-buttons" align="center">
+            <button mat-mini-fab color="primary" aria-label="Edit Discount" (click)="editDiscount()">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</ng-container>
+<ng-template #elseTemplate>
+    <div class="u__center" *ngIf="!!!discount" #showSpinner>
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>
+<button class="history-button" *ngIf="showHistoryButton" mat-raised-button color= "primary" (click)="showHistory()">Show Discount History</button>
+</div>
+<router-outlet></router-outlet>

@@ -24,9 +24,23 @@
         <p>{{ product.subTypeView }}</p>
       </div>
     </div>
-    <div class="group end">
-      <h2>Price: &#x20b9; <small>{{product.price}}</small></h2>
-    </div>
+    <ng-container *ngIf="product.discountValue > 0; else noDiscount">
+      <div class="group space">
+        <h2>&#x20b9; {{(product.price * product.discountValue)/100}}</h2>
+        <h2 class="strike">&#x20b9; {{product.price}}</h2>
+        <h2 class="green">{{product.discountValue}}% off</h2>
+      </div>
+      <div class="group start">
+        <h2 class="green">{{product.discountDesc}}</h2>
+      </div>
+    </ng-container>
+    <ng-template #noDiscount>
+      <div class="group end">
+        <h2>&#x20b9; <small>{{product.price}}</small></h2>
+      </div>
+    </ng-template>
+    
+
   </mat-card-content>
   <mat-card-actions>
     <button *ngIf="buttons[0]" mat-stroked-button (click)="onEdit()">

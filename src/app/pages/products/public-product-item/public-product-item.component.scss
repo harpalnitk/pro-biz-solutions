@@ -25,16 +25,36 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  .strike{
+    text-decoration: line-through;
+    color: #909090;;
+  }
+  .green{
+    color: green;
+  }
+
 }
+
 .group h2{
-  color: #909090;
+  color: #212121;
   font-weight: 600;
-  font-size: 1em;
+  font-size: 1.25em;
 }
 .group h2 small{
-  font-size: 0.75em;
+  font-size: 0.95em;
 }
 .group.end{
   justify-content: flex-end;
 }
+.group.start{
+  justify-content: flex-start;
+}
+.group.space{
+  justify-content: flex-start;
+  h2{
+    margin-left: 0.5em;
+  }
+}
+
+
   
