@@ -1,6 +1,6 @@
 import { CoreService } from './../../core/core.service';
 import { ProfileService } from './profile.service';
-import { Profile } from './profile.model';
+import { UserProfile } from '../../model/profile.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { ProfileDialogComponent } from './profile-dialog/profile-dialog.componen
 })
 export class ProfileComponent implements OnInit {
   id;
-  profile: Profile;
+  profile: UserProfile;
   isLoading$: Observable<boolean>;
   width: string;
 
@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.coreService.setIsLoading(true);
     this.route.data.pipe(switchMap((data) => data.profile)).subscribe(
-      (profile: Profile) => {
+      (profile: UserProfile) => {
         if (profile) {
           this.coreService.setIsLoading(false);
           this.profile = profile;

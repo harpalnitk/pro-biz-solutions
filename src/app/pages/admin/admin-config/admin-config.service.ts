@@ -37,7 +37,7 @@ export class AdminConfigService {
 
      allDiscount$ = this.db.collection("discount").valueChanges({idField:'id'})
      .pipe(
-      tap((val)=>{console.log('Discount values 1',val)}),
+     // tap((val)=>{console.log('Discount values 1',val)}),
       // map((snaps) => convertSnaps<any>(snaps)),
        //tap((val)=>{console.log('Discount values',val)}),
        catchError(this.handleError),
@@ -121,10 +121,10 @@ export class AdminConfigService {
       { value: "m-2", viewValue: "Samsung" },
       { value: "m-3", viewValue: "Apple" },
       { value: "m-4", viewValue: "LG" },
-      { value: "m-4", viewValue: "BPL" },
-      { value: "m-4", viewValue: "Hitachi" },
-      { value: "m-4", viewValue: "Voltas" },
-      { value: "m-4", viewValue: "Tata" },
+      { value: "m-5", viewValue: "BPL" },
+      { value: "m-6", viewValue: "Hitachi" },
+      { value: "m-7", viewValue: "Voltas" },
+      { value: "m-8", viewValue: "Tata" },
     ]
   }
   

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { CoreService } from 'app/core/core.service';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { Profile, ProfileConstants } from '../profile.model';
+import { UserProfile, ProfileConstants } from '../../../model/profile.model';
 import { ProfileService } from '../profile.service';
 
 @Component({
@@ -14,13 +14,13 @@ import { ProfileService } from '../profile.service';
   styleUrls: ['./profile-dialog.component.scss']
 })
 export class ProfileDialogComponent implements OnInit {
-  profile: Profile;
+  profile: UserProfile;
   form: FormGroup;
   isLoading$: Observable<boolean>;
   genders = ProfileConstants.GENDERS;
   constructor(
     private dialogRef: MatDialogRef<ProfileDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) profile: Profile,
+    @Inject(MAT_DIALOG_DATA) profile: UserProfile,
     private profileService: ProfileService,
     private router: Router,
     private coreService: CoreService
@@ -69,7 +69,7 @@ export class ProfileDialogComponent implements OnInit {
       displayName: this.profile.displayName || null,
       gender: this.profile['gender'] ? this.profile['gender'] : 'F',
       address: this.profile.address || null,
-      photoURL: this.profile.photoURL || null,
+      photoURL: this.profile.photoURL || null
     });
 
     if (this.profile['contact'] && this.profile.contact['phones']) {
@@ -113,22 +113,23 @@ export class ProfileDialogComponent implements OnInit {
       return;
     }
     this.coreService.setIsLoading(true);
-    let newProfile: Profile = {
+  let newProfile: Partial<UserProfile> = {
       firstName: this.form.value['firstName'],
       lastName: this.form.value['lastName'],
       gender: this.form.value['gender'],
       about: this.form.value['about'],
-      userType: 'SU',
+      userType: this.profile.userType ? this.profile.userType : 'P',
+      status: this.profile.status ? this.profile.status : 'A',
       photoURL: this.form.value['photoURL'],
       displayName: this.form.value['displayName'],
       address: this.form.value['address'],
       contact: this.form.value['contact'],
-      official: null,
-      email: this.profile.email,
-      uid: this.profile.uid,
+    //  email: this.profile.email,
+     // uid: this.profile.uid,
     };
-    delete newProfile.uid; // unique can't be updated as per this APP POLICY
-    delete newProfile.email; // unique can't be updated as per this APP POLICY
+    //not needed we are using partial now
+   // delete newProfile.uid; // unique can't be updated as per this APP POLICY
+   // delete newProfile.email; // unique can't be updated as per this APP POLICY
     this.profileService.updateProfile(newProfile).pipe(
       finalize(()=>{
         this.coreService.setIsLoading(false);

@@ -1,4 +1,4 @@
-import { Discount } from './../../../../model/discount';
+
 import { DiscountDataSource } from "../discount.datasource";
 import { CoreService } from "../../../../core/core.service";
 

@@ -1,20 +1,25 @@
+import { UserHistoryComponent } from './user/user-history/user-history.component';
+import { UserComponent } from './user/user.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
 import { UsersTableComponent } from './users-table/users-table.component';
-import { UsersDialogComponent } from './users-dialog/users-dialog.component';
+import { UserDialogComponent } from './user-dialog/user-dialog.component';
+import { SharedModule } from 'app/shared/shared.module';
 
 
 @NgModule({
   declarations: [
     UsersComponent,
     UsersTableComponent,
-    UsersDialogComponent
+    UserDialogComponent,
+    UserComponent,
+    UserHistoryComponent
   ],
   imports: [
-    CommonModule,
+   SharedModule,
     UsersRoutingModule
   ]
 })

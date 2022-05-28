@@ -1,7 +1,7 @@
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AuthService } from '../auth/auth.service';
 import { Injectable } from '@angular/core';
-import { Profile } from './profile.model';
+import { UserProfile } from '../../model/profile.model';
 
 import * as fromRoot from '../../app.reducer';
 import { Store } from '@ngrx/store';
@@ -14,7 +14,7 @@ import { from } from 'rxjs';
 export class ProfileService {
 
   //profileCollection: AngularFirestoreCollection<Complaint>;
-  profileDoc: AngularFirestoreDocument<Profile>;
+  profileDoc: AngularFirestoreDocument<UserProfile>;
   currentUserId;
 
   constructor(
@@ -29,11 +29,11 @@ export class ProfileService {
   }
 
   getProfile() {
-    return this.db.doc<Profile>(`users/${this.currentUserId}`);
+    return this.db.doc<UserProfile>(`users/${this.currentUserId}`);
   }
 
   getProfileByUserId(id: string) {
-    return this.db.doc<Profile>(`users/${id}`);
+    return this.db.doc<UserProfile>(`users/${id}`);
   }
   getProfileData() {
     return this.getProfile().valueChanges();
@@ -49,8 +49,8 @@ export class ProfileService {
   deleteProfileByUserId(id: string) {
     return this.getProfileByUserId(id).delete();
   }
-  updateProfile(data: any) {
-    return from(this.getProfile().update(data));
+  updateProfile(profile: Partial<UserProfile>) {
+    return from(this.getProfile().update(profile));
   }
   updateProfileByUserId(id: string, data: any) {
     return this.getProfileByUserId(id).update(data);

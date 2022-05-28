@@ -1,0 +1,60 @@
+<h2 mat-dialog-title class="dialog-title">EDIT USER</h2>
+
+<ng-container *ngIf="isLoading$ | async; else elseTemplate">
+  <div class="u__center">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-container>
+<ng-template #elseTemplate>
+  <div class="dialog-container">
+    <mat-dialog-content [formGroup]="form">
+      <mat-form-field>
+        <mat-label>Select User Type</mat-label>
+        <mat-select formControlName="userType">
+          <mat-option *ngFor="let type of userTypes" [value]="type.value">
+            {{ type.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Select User Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option *ngFor="let status of userStatus" [value]="status.value">
+            {{ status.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div formGroupName="official">
+        <mat-form-field>
+          <mat-label>Select User Role</mat-label>
+          <mat-select formControlName="role">
+            <mat-option *ngFor="let role of userRoles" [value]="role.value">
+              {{ role.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Designation"
+            formControlName="designation"
+            maxlength="40"
+          />
+        </mat-form-field>
+      </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+      <button mat-raised-button color="warn" (click)="close()">Close</button>
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="save()"
+        [disabled]="form.invalid"
+      >
+        Save
+      </button>
+    </mat-dialog-actions>
+  </div>
+</ng-template>

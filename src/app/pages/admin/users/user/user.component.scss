@@ -1,0 +1,19 @@
+
+
+.action-buttons{
+    button:not(last-child){
+        margin-right: 2rem !important;
+    }
+}
+.history-button{
+    margin: 2rem;
+}
+h3,h5{
+    margin-bottom: 0.5rem;
+}
+.user-data{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}

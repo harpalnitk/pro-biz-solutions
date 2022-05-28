@@ -1,0 +1,34 @@
+<div class="main-card-container">
+<ng-container *ngIf="user; else elseTemplate">
+    <mat-card class="main-card">
+        <mat-card-header>
+            <mat-card-title>Email: {{user.email}}</mat-card-title>
+            <mat-card-subtitle>Name: {{user.firstName}} {{user.lastName}}</mat-card-subtitle>
+        </mat-card-header>
+       
+        <mat-card-content>
+           
+            <h3>User Type: {{user.viewUserType}}</h3>
+            <div class="user-data">
+                <h5>Role: {{user.viewRole}}</h5>
+                <h5>Designation: {{user.designation ? user.designation : 'No designation given'}}</h5>
+                <h5>Status: {{user.viewStatus}}</h5>
+                <h5>Gender: {{user.gender}}</h5>
+            </div>
+
+        </mat-card-content>
+        <mat-card-actions class="action-buttons" align="center">
+            <button mat-mini-fab color="primary" aria-label="Edit User" (click)="editUser()">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</ng-container>
+<ng-template #elseTemplate>
+    <div class="u__center" *ngIf="!!!user" #showSpinner>
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>
+<button class="history-button" *ngIf="showHistoryButton" mat-raised-button color= "primary" (click)="showHistory()">Show User History</button>
+</div>
+<router-outlet></router-outlet>

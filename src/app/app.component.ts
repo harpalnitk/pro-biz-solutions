@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.adminConfigService.saveConfigData();
+   //this.adminConfigService.saveConfigData();
    // this.postCategoryService.saveConfigData();
    //this.postCategoryService.allCategories$.subscribe(val=> console.log('Catgories:', val));
    //this.postService.allPosts$.subscribe(val=> console.log('Posts:', val));
